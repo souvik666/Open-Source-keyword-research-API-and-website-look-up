@@ -80,38 +80,75 @@ You can provide Parameters like phrase and count of result that wish to have dep
 
     },
 
-    {
+all other results links with their qunty...
 
-    "keyword": "macbook pro",
+    ]
 
-    "totalProducts": "253"
+**Check Broken Links**
+By passing your website URL you can check for Broken Links that are present in your website
 
-    },
-
-    {
-
-    "keyword": "macbook air",
-
-    "totalProducts": "103"
-
-    },
+**Request Parameters**
 
     {
 
-    "keyword": "macbook pro 13 inch case",
-
-    "totalProducts": "2088"
-
-    },
-
-    {
-
-    "keyword": "macbook air case",
-
-    "totalProducts": "2477"
+        "uri":"https://www.google.com/",
 
     }
 
-    ]
+**Response(json)**
+
+{
+
+"CheckedLinks": [
+
+{
+
+"url": "https://google.com/",
+
+"state": "OK",
+
+"status": 200
+
+},
+
+{
+
+"url": "data:image/png;base...",
+
+"state": "SKIPPED",
+
+"status": 0
+
+},
+
+{
+
+"url": "data:image/png;base64...",
+
+"state": "SKIPPED",
+
+"status": 0
+
+},
+
+{
+
+"url": "urls that are cheeked",
+
+"state": "OK",
+
+"status": 200
+
+},
+
+**_all other cheeked links with their states_**
+
+],
+
+"BrokenkLinks": [],
+
+"BrokenLinkCount": "Congratulations no broken links found"
+
+}
 
 **The API is under development and it's only for educational purpose**
