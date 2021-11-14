@@ -3,7 +3,7 @@ const AlexaRankResponse = require("../controllers/Alexa.Ranking");
 const FindBrokenLink = require("../controllers/BrokenLink.Controller");
 const router = express.Router();
 
-router.get("", async (req, res) => {
+router.get("/:uri", async (req, res) => {
   const uri = req.params.uri;
   const alexa = await AlexaRankResponse(uri);
   return res.json(alexa);
