@@ -12,9 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "alexa-rank-nodejs": "^1.0.4",
-    "dns": "^0.2.2",
+    "amazon-keyword-research": "^1.0.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "linkinator": "^2.16.1"
+    "linkinator": "^2.16.1",
+    "marked": "^4.0.3"
   }
 }

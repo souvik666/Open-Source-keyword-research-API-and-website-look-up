@@ -1,42 +1,11 @@
-const link = require("linkinator");
+const FindBrokenLink = require("../../utilis/BrokenLink.Controller");
+const express = require("express");
+const BrokenLinkRouter = express.Router();
 
-const FormaterObj = (url, state, status, parent) => {
-  return { url, state, status };
-};
+BrokenLinkRouter.get("/brokenlinks", async (req, res) => {
+  if (!req.body.uri) return res.send({ err: "no uri provided" });
+  const broken = await FindBrokenLink(req.body.uri);
+  return res.send(broken);
+});
 
-const FindBrokenLink = async (des) => {
-  const checker = new link.LinkChecker();
-
-  checker.on("pagestart", (url) => {
-    console.log(`Scanning ${url}`);
-  });
-
-  let arr = [];
-  checker.on("link", (result) => {
-    arr.push(
-      FormaterObj(result.url, result.state, result.status, result.parent)
-    );
-  });
-
-  const result = await checker.check({
-    path: `${des}`,
-    // port: 8673,
-    // recurse: true,
-    // linksToSkip: [
-    //   'https://jbeckwith.com/some/link',
-    //   'http://example.com'
-    // ]
-  });
-
-  const brokeLinksCount = result.links.filter((x) => x.state === "BROKEN");
-  let res = {
-    CheckedLinks: arr,
-    BrokenkLinks: brokeLinksCount,
-    BrokenLinkCount: brokeLinksCount.length
-      ? brokeLinksCount.length
-      : "Congratulations no broken links found",
-  };
-  return res;
-};
-
-module.exports = FindBrokenLink;
+module.exports = BrokenLinkRouter;
